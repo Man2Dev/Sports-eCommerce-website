@@ -81,6 +81,14 @@ class Item(db.Model):
     def __repr__(self):
         return f'Item {self.id} {self.name} {self.price} created'
 
+class Item_Images(db.Model):
+    __tablename__ = 'item_images'
+    item_id = db.Column(db.Integer, db.ForeignKey('item.id'), nullable=False, primary_key=True)
+    image_url = db.Column(db.String(100), nullable=False, primary_key = True)
+    def __repr__(self):
+        return f'Item_image {self.item_id} {self.image_url}created'
+
+
 class Item_Size(db.Model):
     __tablename__ = 'item_size'
     item_id = db.Column(db.Integer,db.ForeignKey('item.id'), primary_key=True)
