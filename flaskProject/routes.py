@@ -26,6 +26,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('dashboard'))
         else:
@@ -63,6 +64,11 @@ def register():
         return redirect(url_for("index"))              #UPDATE THE REDIRECTION
     return render_template('register.html', form=form)
 
+@app.route("/dashboard", methods=['GET','POST'])
+def dashboard():
+    return render_template('dashboard.html')
+
+
 @app.route("/sports", methods=['GET','POST'])
 def sport_page():
     return render_template('<h1>login</h1>')
@@ -77,3 +83,8 @@ def category_page():
 def card_page():
     return render_template('<h1>login</h1>')
 
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

@@ -6,8 +6,8 @@ from pygments.lexer import default
 
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def load_user(user_email):
+    return User.query.filter_by(email=user_email).first()
 
 
 class User(db.Model, UserMixin):
@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
             'polymorphic_on':type
         }
 
+    def get_id(self):
+        return self.email
 
 class Customer(User):
     __tablename__ = 'customer'
@@ -34,7 +36,7 @@ class Customer(User):
     }
 
     def __repr__(self):
-        return f'Customer {self.id} {self.name} {self.surname} created'
+        return f'Customer {self.name} {self.surname} created'
 
 class Cart(db.Model):
     __tablename__ = 'cart'
@@ -51,14 +53,14 @@ class Admin(User):
         'polymorphic_identity': 'admin',
     }
     def __repr__(self):
-        return f'Admin {self.id} {self.name} {self.surname} created'
+        return f'Admin {self.name} {self.surname} created'
 
 class Seller(User):
     __tablename__ = 'seller'
     email = db.Column(db.String(50), db.ForeignKey('user.email'), nullable=False,primary_key=True)
 
     def __repr__(self):
-        return f'Seller {self.id} {self.name} {self.surname} created'
+        return f'Seller  {self.name} {self.surname} created'
     __mapper_args__ = {
         'polymorphic_identity': 'seller',
     }
