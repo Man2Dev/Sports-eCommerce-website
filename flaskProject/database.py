@@ -24,28 +24,29 @@ class User(db.Model, UserMixin):
             'polymorphic_on':type
         }
 
+
 class Customer(User):
     __tablename__ = 'customer'
+    email = db.Column(db.String(50), db.ForeignKey('user.email'),nullable=False,primary_key=True)
+    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'), nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'customer',
     }
-    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'), nullable=False)
 
     def __repr__(self):
         return f'Customer {self.id} {self.name} {self.surname} created'
-
 
 class Cart(db.Model):
     __tablename__ = 'cart'
     id=db.Column(db.Integer,primary_key=True)
     #Search how to create list of items
-    owner_id=db.relationship('customer', backref="owner",lazy=True)
     def __repr__(self):
         return f'Cart {self.id} created'
 
 
 class Admin(User):
-    __tablename__ = 'Admin'
+    __tablename__ = 'admin'
+    email = db.Column(db.String(50), db.ForeignKey('user.email'), nullable=False,primary_key=True)
     __mapper_args__ = {
         'polymorphic_identity': 'admin',
     }
@@ -54,11 +55,13 @@ class Admin(User):
 
 class Seller(User):
     __tablename__ = 'seller'
+    email = db.Column(db.String(50), db.ForeignKey('user.email'), nullable=False,primary_key=True)
+
+    def __repr__(self):
+        return f'Seller {self.id} {self.name} {self.surname} created'
     __mapper_args__ = {
         'polymorphic_identity': 'seller',
     }
-    def __repr__(self):
-        return f'Seller {self.id} {self.name} {self.surname} created'
 
 class Category(db.Model):
     __tablename__ = 'category'
