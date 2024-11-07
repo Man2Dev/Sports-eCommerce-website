@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports E-commerce</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header,
+    .footer {
+      background-color: #ffe89b;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home {
+      padding-right: 10px;
+    }
+
+    /* Header right */
+    .auth-right-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar select,
+    .navbar button {
+      margin: 0 5px;
+    }
+
+    .cart {
+      padding-right: 10px;
+    }
+
+    .profile {
+      padding-right: 10px;
+    }
+
+    /* Breadcrumb Navigation */
+    .breadcrumb {
+      padding: 10px;
+      font-size: 0.9em;
+      background-color: #f8f8f8;
+      text-align: left;
+      margin: 0 20px;
+    }
+
+    .breadcrumb a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    .sport {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Banner */
+    .banner {
+      margin: 20px 0;
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    /* Product Cards */
+    .category-section {
+      margin: 20px 0;
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .more-button-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-section h3 {
+      margin: 0 0 20px 0;
+    }
+
+    .products {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .product:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .image-placeholder {
+      width: 150px;
+      height: 150px;
+      background-color: #ddd;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+
+    .banner-placeholder {
+      width: 900px;
+      height: 290px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .banner-placeholder:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .more-button {
+      background-color: #f0ad4e;
+      border: none;
+      padding: 8px 12px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .more-button:hover {
+      background-color: #e68a00;
+      transform: scale(1.05);
+    }
+
+    .footer-links a {
+      color: blue;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .footer {
+        padding: 10px;
+      }
+
+      .more-button {
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <!--left-->
+    <section class="auth-left-section">
+      <div class="home">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAADsAAAA7AF5KHG9AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAkZJREFUWIW117trFUEUx/FPViUxmGijJqbxlXRG7YKdWlgIgYAg5v8QaxtREZEUgmjAQsRH6wMUX4UJ+ECjpZBIRDDaiEnQRDQWsys3l929u/fefOE0s3POb3Zn9pwzLYrTicM4gN3Yig3xs+/4iLd4jLuYLRE7lz6MYh5LBW0eV9DbiPBanMPvEsLVtoizaCsr3ov3DQhX2zi6i4rvxdcmiif2Cf1F3nwlxCsX0ZUl3iac4pUST+yVcL7AqooFnMZQrU9UwQ9cwxvsRGtBvy34g6eVg33KnfaX6Knw74nHivrPqtqK0RLOt9Ge8mbt8bOicS4mjp2KJZm/wjZFKeIJLTgRz60Vbw4dcKzA5J8YzhGuZjj2qRX3KFyuMekLBkqIJwzEvnmxL8GLnAnvhKJTLz14nRN/HL5lPJwU71GDdGAqQ2MmEg5hGpOaU1Jn4wWksR4WMla3hJsYbEB8ELdy4v8iewsSG8kIHmFfbFm/5kiN2DOR8KnLsgYP8Ty2B1hdR5zJCBN1OA4JrVnCQeXqSMJEJPRwZdmeMrajjjiPItwRUnEZWgqO5TGP+5GQk2+UdG4G1zGXnN4zQjlOY1MDIpszxheFwvb/5H7ABRxPmXwEV4W8npBWGw6JE0tMd+ybxnkpf1+bkJuL1vN6bUxO99SF6RUU/2x5J5VKv9C9Nlt8GrtqiSdsxLMmio/JacezaMVJ4TetV3gBpxTvmFPpEhrIMguZE7qdtIy5jDLZa51wPd+PPdhm+fV8SrgjPMG9eBE1+Qdsd8e++LLEwQAAAABJRU5ErkJggg=="
+          alt="Home" />
+      </div>
+      <div class="logo">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7AAAAOwBeShxvQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAgaSURBVFiFrZd5cBRlGsZ/093Tc1+5zGEiOZRIAuFYQYmLi4B4ICsqggi6gq6sodhQu1rlimihJYWsbKGWAroeiK5KsSXeULIGLXEXQwSzCZCgOSQkIRknkzl6eqZ7ev+IZgMZOdx9/urv6/d5n6e/4/2+hrOELFueEARRMZstmwD72fL+F3iAJbJseUeWbbWCIMZnXLvIuKCoLCpJ8ndA8f9DxJSib7QsWx7Rk8mZ2TkjyM69wGG1OsAEXl8WAJ3HW4yv9+/5XtMS84ECoBPYBegp8l0OBICGszEgiZLUWTZ6cnpufrFJFKXBF+FQgJ7uYxiagiAI9Pj9hAPdiYVXXarWf3tMP9zeWR8IRa8AkgB2u31885ZH7z/Q1D5n8bqXVH8oOlfTtJ2nGhBPac9KS8u+uaziMqsgCACE+gMcOfgp0b4O5k4dz81TL+HyMSV47TKtHZ3ipIsL5VcfuNu6e3+jt6WrtxE4AuTaZGnfb6+bMuGS0kJxdNH5ll21DTlhRd1yqgFpaMNssa4YUVLm+bHd3dlCe3Mdm1ZVc8OVlScRb7tuGmuql7B45VqW/PllJo0qse7+6nA+YPK57G+tXHS9Y0R2BgCNrcd1TddbzjQFVlGU/DNn3WE3CQK9Jzo4drSWva9uoCAn6yTSZ3X1CCYT4zIKifQo3LhuNV8dPapGYupYs1mYPqYwf82+5x5yCiYTbd1+Ku5a1R+MxMqB7041IAx5vtDucMdMgkAiEae58Qt2blwzTBzA53ay7oU3ifWoiAisnLcQiyy3AkmbWV7z1sO/cwomE4ZhsOCxzf2xuH5/KvGhBkzAdMMYWMTH25tYcM1UykpGpOJQXlLItsdXDbanVI4hrmn5Hqft3Y0r7rAV5WQC8Ny7NVpjW0e9mkhsTploiIFb3J601aVlk9IAwv42qubNGhbcH45y6W3LADB7zLhHuvGUebBlWvG6HNrsy8bl3zptogjQ0HqcPz2/PdwXVuYBxpkMBMGUzMouwEgmCUXClOb4Tgr84mAj1y97kMvHlQ/2SQ4J0TKwkdR4wvH08gU2gKgaZ/aDT0VisfjtQMdPiQ818FFMCf+zpflrTdMS2GQZon2g6ySTA+bzsjJ45N47WPeHe4YlaW7rQBRMoqLGAVi6fks0EIpsVXX93dOJw5BtGI+rC5uPHKiTrY7ccFQRtISGEOyidNEDbFv/MBUji1MuSIBn33wf2VtE+dJ15PrsRnNrWySW0KrPJA4nF6JoMqlv9/d0LIwnEo7JZcWU5KQzubgCOWzBZbNhdpqHJWg4dIj7NrzCbdXbmTb3Xjz5F5l6u47pSqR/sZZQDwHfnM7AsLMg3ev6umr+DaM/qPmcf6x5kES/e2CorOAutoAoQdIALU57exvTVqxl0uzHubDiClxZ0mDClkNf8vpTKwKRYOC9mBJaCkTPNAIAWMzyyr8+ep/ru+5eNr69kyvLxmOTZWweBSkZglgY1DDbPv6Meas384trHmDk2KtwZUoIwn+/x5eZR+XVi2zfn2gbHfQfL4mrse1nZcBqlQua2zvG/OX+KnPt4WaqnnnG6Ip00hXsMdU1tbNtTy3Lnn6Dvd+GmDp/A0WjKnFlSIjS8INVEES86Tmmz95/qdwwjLeB7jNOAWDxuZ3rNT053yxJ/cFw5CFd18n2eS4zBFOeYTA9L2+EY9SUakonXIHdI2ISUmT5ATteXE3tJ9uwSqbX/H19C4eZTMFRA/3hqlAkmv59sL9Q1/WtwNauQLAqGIrW3XXjteK9N82grekjHL7Ti/d0tlBbs53S8olIZnNFqpjT0IdDls333DnnaustM6dwuO5jlHDwJ2MT8Rgvr72HC0eOxeXyoSixPFKM+LkYmFyQnWkrKcjD7bRz47RKo+adzfFUgbqu8coTS3FY7eTll+BwerA7nC5gys82kOFxL1+2YM7gXWHfwX8HP3l7k97n7zwpLhruY+OqW1H6e7no4vGD/dn5pVK6N+2hn2sgXUsmr1s4a7oAcOjbdtqOd0eMpL5865NVUcNIYhgGjbW7eWL5dKySyKjyScRVBTU2sP1zcgtR4rFfAhlDE0vDtYbDbrVWLZlzjeSwWQF49o0dSkxLrNV1/YWu9qZfP1k941pFiQqSIDJmbCVOl5djbUc43PAvLSenQCgb9ytBEEXOzy8xt7UeuVNV1XXnMgKyJIm/r779JitAKBLl9Q92xxVFfREgGunfqMfCRsXYSiZOnommJdiz641ER0t9jaqqY090H0skEioAWTlFJofNtmJo8rMxMGXMRUWm888buGRs2vaeJgjC34AIYPJ6PJsKR04QHc6B5fHNoX2aElOu6g0EpgINdrv9o66Ogeugx5eJgZABjDwXA+0tHZ1SKDIwl9t3fdrWGwiu/eHdbKfTk52ekQNAZ0cLST3RBNT8SO71+zf0dH4z+L+Qm19idjkcd5+LgSZFia3PmTo3ureufu0Xf3+yDGgFTF6X61lRdohxNYZhJGlp2q/5A4HFp/D3BIN9ajQSIq4qiJIFA9MSUlfh0+Kks1gUxZsnji4NLrt1juHzeIy8/GIjPS1tXypimsfzvNebZqR5PcaMyRONTJ83AqSsjGeN89J87+146lHDqN9ttOx8zTBLknaapBOy0n1RpfZDw6jfbfzxN7cowFI4x1I8FKqWOFrz5YF4MmmwZceuhNtp+xA4+BPh++OJ+Im9BxqIxlRqvjwQB9p/rvaP8KZ73R9bLXI03ev+HEg/Q/x4n9vV4rRbg2lu9wZ+WAP/AY1sRMlTBh2oAAAAAElFTkSuQmCC"
+          alt="Logo" />
+      </div>
+    </section>
+    <!--right-->
+    <section class="auth-right-section">
+      <nav class="navbar">
+        <select id="categoryDropdown">
+          <option value="sports" selected disabled>Sports</option>
+          <option value="basketball">Basketball</option>
+          <option value="football">Football</option>
+          <option value="tennis">Tennis</option>
+        </select>
+      </nav>
+      <dev class="cart">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7AAAAOwBeShxvQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFsSURBVFiFxdY9LwRRFAbgZxGJghB+gI9QaBSUolVTSNR+A3qJntZP8PUb9JsIrURFQoiPKEQsS7G7DJmxM7tzx5uc5M6d+57zzjnn3rn8M0pYwBI6I/P32MRFESIe8RFje0UEhx28xQh4Rm9RIhroxFZExHLRAmAE1bqAw9DBSgnzZcyggnVcBoh9i6Okl2viGzNvW+lIELBXXxAafzZ5WfgMjCVlgPDnQBnnzQSELEOqDwxZhjH4KwOpVbaAMs7TLBz2fSjlaatZ1QZJP81LQP5l+JH+/xCw3wrpSn7pH80avCT50pLFKtjOGhwmI04O0N2KkySk6YHpyHgXr3kK6Eqx5iUynlc7F9rBGU6zEPpwI78mfMdUw3maEjxhEddZVDfB108u6UoWhx7Mor/N4JlLAINq9Z9oMWhb/Dk8qKWtio2C+U78bKIqxvPip2nCkV/PpZi5kPyvq1nD7jBQIN9Q3ckjjtV2Qm78T5+LA+RtHChzAAAAAElFTkSuQmCC"
+          alt="Cart" />
+      </dev>
+      <dev class="profile">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA7AAAAOwBeShxvQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALCSURBVFiFxddLqFVlFAfw3/V6RK/WTPKRAweSoeRIQgz0+kAMoqE0dRKaowYODBJnV9AIwXmTRunAsaj4Crkq0q1Ie5CaVpblW6K8XQff2ux9Xnuffc9VF3x856zXf+1vr8e3ecE0UEN3EBuxCSuwDA3MwB18j69xBKcwPlVBzsbHuIGJHtfv2ImhfsG34JeC42+wGxuwELMiwKVYjxFcLuj/incnAzyITwqOzuKtGvbrcD5s/8c+TK8DfjiM/8H7mnOlgW3Se/4Ld3E89AYLegP4AP+Gr8/0mHOfhsEdvNkiW4AvdX/3FzG3xWYYf4d8fxX4e6H4GKtaZI0K8GyNSpXRGkR2Epu7gb+Em6G0vYN8Ww/g2drawX5HyK4FVhvtCYWTOr+r0zUCON3BfgAXQr6zVThdKpkJrO0UHf6sEcDtLj42hPyq5oT1jrzOu9G9GgHcL/FzJXQ2wrRgDsd+qMTwQomslb4tkR2JfU0xgJWxnykx/KJGAJ+XyI7G3tTYbknHsqDEcFCeRGXrkvYyLNJrofdTkfkwmLNKDElNZrQCfGGFjzmhe7fI/C+YjQpj0tNtlUrtNh5IDWqH8ifPaCiwHhSZ2ahd1IODfmlRYP1APqF+lI5uiTR+q2gGFuPl+H8fP0vttopej/0meRWMxT7cpp7TG9iLr6RZcVnKh9H4/UjKgREsL/GzOvazRWbWocba1NNQOqH3JpStY9qnKXwX8qaHbUgJVWzFQzgoXSjqgo/LLyMH5NW1NvjXdUj4j+SDZL7mG03dAFoDGcU8nIv/H3Y4GXPwRyj8FvuTPsBbg8h83tBlHJMuoZlhP09ett7uBp7R2DMCnpAqqJJmSreWqQa/prdOiZShU3kSVQOqK43Ik2iyCTgyGeAivSrN8DqBjEvfCq/0C16k2dgl3QnuaS7RcWm8Xgqdvr8Jnxs9BQlqoDUSU5p4AAAAAElFTkSuQmCC"
+          alt="Profile" />
+      </dev>
+      <button class="logout-button">Log out</button>
+    </section>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> > <a href="/sports">Sports</a> > Football
+    <dev class="sport">
+      <h2>Football</h2>
+    </dev>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-placeholder"
+      style="background-image: url('https://as1.ftcdn.net/v2/jpg/07/51/81/66/1000_F_751816603_f5FlKb3EtpH8BednOjyazFknRCrsUee7.jpg');">
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+
+      <section class="category-section">
+        <h3>Clothing</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-illustration/xray-mens-tshirt-isolated-over-600w-2378537987.jpg');">
+            </div>
+            <p>Shirts</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-illustration/cap-colour-front-3d-rendering-600w-1356197036.jpg');">
+            </div>
+            <p>Hats and Caps</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://noname-18af3.kxcdn.com/1155-medium_default/exercise-pants-unisex.jpg');">
+            </div>
+            <p>Pants and Shorts</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            </div>
+            <p>Football</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('clothing')">More</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="category-section">
+        <h3>Footwear</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://merchandising.demon-tweeks.com/images/tr:h-300,w-300,q-80,c-at_max/media/catalog/product/s/p/spa_top_001287_nr-nov20_52.jpg');">
+            </div>
+            <p>Boots</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://media.viskanassets.com/v2/sportshopenprod/list/A132704_900100_01.jpg');">
+            </div>
+            <p>Sneakers</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.teamsportia.se/wp-content/uploads/2024/07/042591_0195751728966_Salomon_H24_5ff9aa06d6-324x324.jpg');">
+            </div>
+            <p>Flats</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/382482_102_SOC_U%20SPORT%20SOCK%205P.png');">
+            </div>
+            <p>Socks</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('footwear')">More</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="category-section">
+        <h3>Accessories</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/professional-work-gloves-protective-builders-600w-2424205549.jpg');">
+            </div>
+            <p>Gloves</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            </div>
+            <p>Football</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-goal-soccer-vector-illustration-600w-2261781039.jpg');">
+            </div>
+            <p>Football Net</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/sport-backpack-sportswear-equipment-travel-600w-2164193993.jpg');">
+            </div>
+            <p>Bags</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('Accessories')">More</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 contributors - team 3</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>
+</body>
+
+</html>
