@@ -7,7 +7,6 @@
 
         <link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"/>
         <link  rel="icon" type="image" href="../static/logo_t.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
           <!-- bootstrap.min css -->
           <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
@@ -20,7 +19,15 @@
           <!-- Slick Slider  CSS -->
           <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
           <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
-
+        <script>
+            function navigateToCategory() {
+                var dropdown = document.getElementById("categoryDropdown");
+                var selectedPage = dropdown.value;
+                if (selectedPage) {
+                    window.location.href = selectedPage;
+                }
+            }
+        </script>
         {% block head %}{% endblock %}
     </head>
     <body>
@@ -32,10 +39,25 @@
                 <nav>
                     <ul>
                         <li><a href = "{{ url_for('index') }}">Home</a></li>
+                        <li>
+                            <select id="categoryDropdown" onchange="navigateToCategory()">
+                                <option value="" disabled selected>Sports</option>
+                                <option value="{{ url_for('category', sport='basketball') }}">Basketball</option>
+                                <option value="{{ url_for('category', sport='football') }}">Football</option>
+                                <option value="{{ url_for('category', sport='tennis') }}">Tennis</option>
+                            </select>
+                        </li>
                         {% if current_user.is_authenticated %}
-                            <li><a href = "{{ url_for('dashboard') }}">Dashboard</a></li>
-                            <li><a href = "{{ url_for('logout') }}">Logout</a></li>
+                            {% if current_user.type == 'seller'%}
+                                <li><a href = "{{ url_for('dashboard') }}">Dashboard</a></li>
+                                <li><a href = "{{ url_for('logout') }}">Logout</a></li>
+                            {% else %}
+                                <li><a href = "{{ url_for('dashboard') }}">Dashboard</a></li>
+                                <li><a href = "{{ url_for('cart') }}">Cart</a></li>
+                                <li><a href = "{{ url_for('logout') }}">Logout</a></li>
+                            {% endif %}
                         {% else %}
+                            <li><a href = "{{ url_for('login') }}">Login</a></li>
                             <li><a href = "{{ url_for('register') }}">Register</a></li>
                         {% endif %}
                     </ul>
@@ -55,7 +77,10 @@
             {% block body %}{% endblock %}
         </main>
         <footer>
-            <copy>&copy; 2024 Sports_website.com</copy>
+            <p>&copy; 2024 contributors - team 3</p>
+            <div class="footer-links">
+              <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+            </div>
         </footer>
     </body>
 </html>

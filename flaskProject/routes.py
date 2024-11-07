@@ -69,14 +69,19 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route("/sports", methods=['GET','POST'])
-def sport_page():
-    return render_template('<h1>login</h1>')
+@app.route("/products", methods=['GET','POST'])
+def products():
+    return render_template('products.html')
 
 
-@app.route("/category", methods=['GET','POST'])
-def category_page():
-    return render_template('<h1>login</h1>')
+@app.route("/cart", methods=['GET','POST'])
+def cart():
+    return render_template('cart.html')
+
+@app.route('/category/<sport>')
+def category(sport):
+    return render_template('sports.html', Ssport=sport)
+
 
 
 @app.route("/card_page", methods=['GET','POST'])

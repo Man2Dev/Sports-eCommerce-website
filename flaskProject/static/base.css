@@ -23,7 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #E0F4FF;
+    background-color: #ffe89b;
     padding: 10px 20px;
 }
 
@@ -32,10 +32,17 @@ footer {
     bottom: 0;
     width: 100%;
     padding-top: 5px;
-    height: 1.5rem;
+    height: 3rem;
     text-align: center;
-    background-color: #E0F4FF;
+    background-color: #ffe89b;
 }
+
+.footer-links a {
+      color: blue;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
 
 .header_left img {
     width: 100px;
@@ -158,15 +165,7 @@ body::after {
     height: 50px; /* Set same as footer's height */
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding-top: 5px;
-    height: 1.5rem;
-    text-align: center;
-    background-color: #E0F4FF;
-}
+
 
 .alert-success {
     text-align: center;

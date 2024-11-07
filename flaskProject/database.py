@@ -36,7 +36,7 @@ class Customer(User):
     }
 
     def __repr__(self):
-        return f'Customer {self.name} {self.surname} created'
+        return f'Customer'
 
 class Cart(db.Model):
     __tablename__ = 'cart'
@@ -60,7 +60,7 @@ class Seller(User):
     email = db.Column(db.String(50), db.ForeignKey('user.email'), nullable=False,primary_key=True)
 
     def __repr__(self):
-        return f'Seller  {self.name} {self.surname} created'
+        return f'Seller'
     __mapper_args__ = {
         'polymorphic_identity': 'seller',
     }
