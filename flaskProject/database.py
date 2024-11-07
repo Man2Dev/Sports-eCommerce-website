@@ -72,6 +72,13 @@ class Category(db.Model):
     def __repr__(self):
         return f'Category {self.id} {self.name} created'
 
+class Sport(db.Model):
+    __tablename__ = 'sport'
+    id=db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    def __repr__(self):
+        return f'Sport {self.id} {self.name} created'
+
 
 
 class Item(db.Model):
@@ -83,6 +90,7 @@ class Item(db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(300), nullable=False)
     category = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    sport = db.Column(db.Integer, db.ForeignKey('sport.id'), nullable=False)
     def __repr__(self):
         return f'Item {self.id} {self.name} {self.price} created'
 
