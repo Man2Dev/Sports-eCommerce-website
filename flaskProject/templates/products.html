@@ -19,7 +19,7 @@
         }
         .logo img {
             width: 150px;
-	    height: 50px
+	    height: 50px;
             margin-right: 10px;
         }
         .nav {
@@ -27,7 +27,7 @@
             align-items: center;
         }
         .dropdown {
-            position: relative
+            position: relative;
 		background: blue;
         }
         .dropdown select {
@@ -57,7 +57,7 @@
             margin: 20px;
         }
         .filter-sort {
- 	     background: blue
+ 	     background: blue;
             display: flex;
             gap: 15px;
         }
@@ -93,7 +93,7 @@
         .product-card-img {
             width: 100%;
             height: 200px;
-            object-fit:cover
+            object-fit:cover;
             margin-bottom: 10px;
         }
         .product-card-price {
@@ -137,28 +137,28 @@
 
    <!-- Content Header -->
     <div class="content-header">
-<h2 style="text-align:center;">Products</h2>
-                <div class="filter-sort">
-            <div>
-                <label for="sort"></label>
-                <select id="sort">
-                    <option>Price $</option>
-                    <option>Ascending</option>
-                    <option>Descending</option>
-		   <option>type</option>
-                    <option>Name</option>
-                </select>
+        <h2 style="text-align:center;">Products</h2>
+                    <div class="filter-sort">
+                <div>
+                    <label for="sort"></label>
+                    <select id="sort">
+                        <option>Price $</option>
+                        <option>Ascending</option>
+                        <option>Descending</option>
+               <option>type</option>
+                        <option>Name</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter"></label>
+                    <select id="filter">
+                        <option>Clothing</option>
+                        <option>Footwear</option>
+                        <option>Accessories</option>
+                        <option>Sports Nutrition</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label for="filter"></label>
-                <select id="filter">
-                    <option>Clothing</option>
-                    <option>Footwear</option>
-                    <option>Accessories</option>
-                    <option>Sports Nutrition</option>
-                </select>
-            </div>
-        </div>
     </div>
 
     <!-- Products Section -->
@@ -215,30 +215,31 @@
             <p>Soccer gloves in black</p>
             <span class="product-card-price">10.99 $</span>
         </div>
-<div class="product-item">
+    <div class="product-item">
 
-            <img src="#" alt="5kg Dumbbells">
-            <p class="bold-text">5kg Dumbbells</p>
-            <p>Handheld weights</p>
-            <span class="product-card-price">10.99 $</span>
-        </div>
-        <div class="product-item">
-            <img src="#" alt="Zip-Up Hoodie">
-            <p class="bold-text">Zip-Up Hoodie</p>
-            <p>Outerwear with a front zipper</p>
-            <span class="product-card-out-of-stock">Out of Stock</span>
-        </div>
-        <div class="product-item">
-            <img src="#" alt="Green Soccer Ball">
-            <p class="bold-text">Green Soccer Ball</p>
-            <p>Soccer Ball in green color</p>
-            <span class="product-card-price">10.99 $</span>
-        </div>
-        <div class="product-item">
-            <img src="#" alt="Black Gloves">
-            <p class="bold-text">Black Gloves</p>
-            <p>Soccer gloves in black</p>
-            <span class="product-card-price">10.99 $</span>
-        </div>
-</div>
+                <img src="#" alt="5kg Dumbbells">
+                <p class="bold-text">5kg Dumbbells</p>
+                <p>Handheld weights</p>
+                <span class="product-card-price">10.99 $</span>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Zip-Up Hoodie">
+                <p class="bold-text">Zip-Up Hoodie</p>
+                <p>Outerwear with a front zipper</p>
+                <span class="product-card-out-of-stock">Out of Stock</span>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Green Soccer Ball">
+                <p class="bold-text">Green Soccer Ball</p>
+                <p>Soccer Ball in green color</p>
+                <span class="product-card-price">10.99 $</span>
+            </div>
+            <div class="product-item">
+                <img src="#" alt="Black Gloves">
+                <p class="bold-text">Black Gloves</p>
+                <p>Soccer gloves in black</p>
+                <span class="product-card-price">10.99 $</span>
+            </div>
+    </div>
+    </div>
 {% endblock %}

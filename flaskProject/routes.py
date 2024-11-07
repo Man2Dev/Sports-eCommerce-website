@@ -86,7 +86,7 @@ def category(sport):
 
 @app.route("/card_page", methods=['GET','POST'])
 def card_page():
-    return render_template('<h1>login</h1>')
+    return render_template('card.html')
 
 @app.route("/logout")
 @login_required

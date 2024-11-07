@@ -1,8 +1,369 @@
 {% extends 'base.html' %}
 {% block head %}
+    <title>Sports E-commerce</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header,
+    .footer {
+      background-color: #ffe89b;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home {
+      padding-right: 10px;
+    }
+
+    /* Header right */
+    .auth-right-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar select,
+    .navbar button {
+      margin: 0 5px;
+    }
+
+    .cart {
+      padding-right: 10px;
+    }
+
+    .profile {
+      padding-right: 10px;
+    }
+
+    /* Breadcrumb Navigation */
+    .breadcrumb {
+      padding: 10px;
+      font-size: 0.9em;
+      background-color: #f8f8f8;
+      text-align: left;
+      margin: 0 20px;
+    }
+
+    .breadcrumb a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    .sport {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Banner */
+    .banner {
+      margin: 20px 0;
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    /* Product Cards */
+    .category-section {
+      margin: 20px 0;
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .more-button-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-section h3 {
+      margin: 0 0 20px 0;
+    }
+
+    .products {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .product:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .image-placeholder {
+      width: 150px;
+      height: 150px;
+      background-color: #ddd;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+
+    .banner-placeholder {
+      width: 900px;
+      height: 290px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .banner-placeholder:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .more-button {
+      background-color: #f0ad4e;
+      border: none;
+      padding: 8px 12px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .more-button:hover {
+      background-color: #e68a00;
+      transform: scale(1.05);
+    }
+
+    .footer-links a {
+      color: blue;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .footer {
+        padding: 10px;
+      }
+
+      .more-button {
+        padding: 6px 10px;
+      }
+    }
+  </style>
 {% endblock %}
 
 {% block body %}
-    <h1>{{Ssport}}</h1>
+     <!-- Banner -->
+  <div class="banner">
+    <h1 style="text-align: center;">{{Ssport}}</h1>
+    {% if Ssport == 'basketball'%}
+        <div class="banner-placeholder"
+            style="background-image: url('https://hawkeyesports.com/imgproxy/l321jXgTUsdR2EOUOfV_ty4VDe1UWHSG-5o6MoA_NLg/fit/3840/2160/ce/0/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2hhd2tleWVzcG9ydHMtY29tLzIwMjQvMTEvNDZkNzUzNjgtMmpyXzI2OTctZTE3MzA3NzQyNTYzMTUuanBn.jpg');">
+        </div>
+    {% endif %}
+    {% if Ssport == 'football'%}
+        <div class="banner-placeholder"
+            style="background-image: url('https://as1.ftcdn.net/v2/jpg/07/51/81/66/1000_F_751816603_f5FlKb3EtpH8BednOjyazFknRCrsUee7.jpg');">
+        </div>
+    {% endif %}
+    {% if Ssport == 'tennis'%}
+        <div class="banner-placeholder"
+            style="background-image: url('https://t4.ftcdn.net/jpg/04/06/73/01/360_F_406730114_KzDtSXbWgrZjpAagr0QytgHLLyHrNUGX.jpg');">
+        </div>
+    {% endif %}
+  {% if Ssport == 'cycling'%}
+        <div class="banner-placeholder"
+            style="background-image: url('https://cdn.shopify.com/s/files/1/0551/0388/1250/files/cycling_benefits_styrkr.jpg?v=1676894320');">
+        </div>
+    {% endif %}
+
+  </div>
+
+  <main class="main-content">
+    <div class="container">
+
+      <section class="category-section">
+        <h3>Clothing</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-illustration/xray-mens-tshirt-isolated-over-600w-2378537987.jpg');">
+            </div>
+            <p>Shirts</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-illustration/cap-colour-front-3d-rendering-600w-1356197036.jpg');">
+            </div>
+            <p>Hats and Caps</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://noname-18af3.kxcdn.com/1155-medium_default/exercise-pants-unisex.jpg');">
+            </div>
+            <p>Pants and Shorts</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            </div>
+            <p>Football</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('clothing')">More</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="category-section">
+        <h3>Footwear</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://merchandising.demon-tweeks.com/images/tr:h-300,w-300,q-80,c-at_max/media/catalog/product/s/p/spa_top_001287_nr-nov20_52.jpg');">
+            </div>
+            <p>Boots</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://media.viskanassets.com/v2/sportshopenprod/list/A132704_900100_01.jpg');">
+            </div>
+            <p>Sneakers</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.teamsportia.se/wp-content/uploads/2024/07/042591_0195751728966_Salomon_H24_5ff9aa06d6-324x324.jpg');">
+            </div>
+            <p>Flats</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/382482_102_SOC_U%20SPORT%20SOCK%205P.png');">
+            </div>
+            <p>Socks</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('footwear')">More</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="category-section">
+        <h3>Accessories</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/professional-work-gloves-protective-builders-600w-2424205549.jpg');">
+            </div>
+            <p>Gloves</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            </div>
+            <p>Football</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-goal-soccer-vector-illustration-600w-2261781039.jpg');">
+            </div>
+            <p>Football Net</p>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/sport-backpack-sportswear-equipment-travel-600w-2164193993.jpg');">
+            </div>
+            <p>Bags</p>
+          </div>
+          <div class="more-button-section">
+            <button class="more-button" onclick="loadMore('Accessories')">More</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
 {% endblock %}

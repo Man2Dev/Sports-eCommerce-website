@@ -1,0 +1,429 @@
+{% extends 'base.html' %}
+{% block head %}
+    <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header,
+    .footer {
+      background-color: #ffe89b;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home {
+      padding-right: 10px;
+    }
+
+    /* Header right */
+    .auth-right-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar select,
+    .navbar button {
+      margin: 0 5px;
+    }
+
+    .cart {
+      padding-right: 10px;
+    }
+
+    .profile {
+      padding-right: 10px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Sub Content */
+    .sub-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    /* Product Cards */
+    .category-section {
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .more-button-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-section h3 {
+      margin: 0 0 10px 0;
+    }
+
+    .products {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      flex-wrap: wrap;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .view-container {
+      width: 80%;
+      align-items: flex-start;
+
+    }
+
+    .view-product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .view-image-placeholder {
+      width: 250px;
+      height: 250px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .image-placeholder {
+      width: 150px;
+      height: 150px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+
+    .count {
+      margin-top: 3%;
+    }
+
+    .button-buy {
+      margin-top: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .add-cart {
+      background-color: #45808e;
+      border-radius: 4px;
+    }
+
+    .buy-now {
+      background-color: #38751c;
+      border-radius: 10px;
+    }
+
+    .description0 {
+      width: 100%;
+      height: 50px;
+
+    }
+
+    .button-out-of-stock {
+      background-color: #ff0000;
+      border: none;
+      padding: 4px 12px;
+      margin-top: 3%;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-links a {
+      color: blue;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .stock {
+      color: green;
+    }
+
+    .buy-buttons {
+      display: grid;
+      width: 30%;
+      align-items: end;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product {
+        height: 100%;
+      }
+
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .footer {
+        padding: 10px;
+      }
+
+      @media (forced-colors: active) {
+        [aria-disabled="true"] {
+          border-color: GrayText;
+          color: GrayText;
+        }
+      }
+    }
+  </style>
+    <script>
+    var clicks1 = 0;
+    var clicks2 = 0;
+    var clicks3 = 0;
+    var clicks4 = 0;
+
+    function clickMEp1() {
+      clicks1 += 1;
+      document.getElementById("clicks1").innerHTML = clicks1;
+    }
+    function clickMEm1() {
+      if (clicks1 > 0) {
+        clicks1 -= 1;
+        document.getElementById("clicks1").innerHTML = clicks1;
+      }
+    }
+
+    function clickMEp2() {
+      clicks2 += 1;
+      document.getElementById("clicks2").innerHTML = clicks2;
+    }
+    function clickMEm2() {
+      if (clicks2 > 0) {
+        clicks2 -= 1;
+        document.getElementById("clicks2").innerHTML = clicks2;
+      }
+    }
+
+    function clickMEp3() {
+      clicks3 += 1;
+      document.getElementById("clicks3").innerHTML = clicks3;
+    }
+    function clickMEm3() {
+      if (clicks3 > 0) {
+        clicks3 -= 1;
+        document.getElementById("clicks3").innerHTML = clicks3;
+      }
+    }
+
+    function clickMEp4() {
+      clicks4 += 1;
+      document.getElementById("clicks4").innerHTML = clicks4;
+    }
+    function clickMEm4() {
+      if (clicks4 > 0) {
+        clicks4 -= 1;
+        document.getElementById("clicks4").innerHTML = clicks4;
+      }
+    }
+
+  </script>
+{% endblock %}
+
+{% block body %}
+    <!-- Main Content -->
+  <main class="main-content">
+    <div class="view-container">
+
+      <div class="view-product">
+        <div class="view-image-placeholder"
+          style="background-image: url('https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQNiHc6WNmvcjPF6t0BTpbeUT1asxbhmUNDyzMeyszRp5mRoK5Mg7vmll6kdbbTyCpg2uTMdsCiafnDSAgzA-dMIMZkC5Bc_eklu3D0EmItUU-EoDoCvQ5E');">
+        </div>
+
+        <div class="buy-buttons">
+          <button class="add-cart">Add to Cart <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
+              alt="Cart" /></button>
+
+          <button class="buy-now">Buy now <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAB2AAAAdgFOeyYIAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAALBJREFUOI3N0k1qAkEUBODP4AlE/FllZ/YuhdGT6EVyiUD0Bl4luFDvkG1UBNG9LvIkg0yrgyApKJqCetVF9+M/o4KPYKXscBtLHIMLtFK3FGGKGjahG1hjeGl8SQRk+MQ++I5dkbGaCPhGL6eXwbuR4eC39hfeygyf0YnhdYT1i0y3vmcS5zYCBpeG1COO0c3pGV7LNJiijlXoJn4wuto3hxbm/hZpLrFI1/DQKj8PJ3HTIG5Fcmk4AAAAAElFTkSuQmCC"
+              alt="buy" /></button>
+        </div>
+
+        <p>Name:</p>
+        <b>Running Shorts</b>
+
+        <p>Price:</p>
+        <b>25.99 $</b>
+
+        <p>Quantity:</p>
+        <button class="minus" type="button" onClick="clickMEm0()"><img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
+            alt="minus" /></button>
+        <a id="clicks0">0</a>
+        <button class="plus" type="button" onClick="clickMEp0()"><img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
+            alt="plus" /></button>
+
+        <p>Category:</p>
+        <a href="#">Clothing</a>
+
+        <p>Status:</p>
+        <b class="stock">In stock</b>
+
+        <p>Description:</p>
+        <textarea
+          class="description0">Lightweight and breathable shorts designed for maximum comfort and performance during runs. Ideal for rm weather and intense workouts.</textarea>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- Sub Content -->
+  <main class="sub-content">
+    <div class="container">
+      <section class="category-section">
+        <h3>Recommendation</h3>
+        <div class="products">
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/professional-work-gloves-protective-builders-600w-2424205549.jpg');">
+            </div>
+            <b>Gloves</b>
+            <p class="description">black football glove</p>
+            <button class="button-buy">10.00 $<img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
+                alt="Cart" /></button>
+            <button class="minus" type="button" onClick="clickMEm1()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
+                alt="minus" /></button>
+            <a id="clicks1">0</a>
+            <button class="plus" type="button" onClick="clickMEp1()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
+                alt="plus" /></button>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            </div>
+            <b>Football</b>
+            <p>mid size football</p>
+            <button class="button-out-of-stock">out of stock <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAELSURBVDiNpdM9TkJBFAXgb9wCoWADdFaWNCS2xAVYuwB2oOugoXMDhNIdaKMNsYfGnoq8a8F9OCL4Cia5xWTOOffn3CkRoT6llCHucZMBbxnPEfH5ixARUqRgii3iTGwTUw68irxM0A5zjNDDABPM0CRm2Yq0AtMqywr9NkMdGGOduGnb/jBL2yU58N4h0iRnCE9JmqOf5C6RWWIeYZGXUT52iuRMIrk2eelVgH9FcrCR3IPA4Ah0ViTdOQi0LUxOlHpSJC0OLK7sNwzuHJ2I+MItPnCNl1JKHw8Jea1tbDA+M/W6klVavrfxaJHWHSLtnvws0olVbtLnSU67lz3PM/PfVb7kM5VLv/M3h10vCS14lOcAAAAASUVORK5CYII="
+                alt="stop" /></button>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/football-goal-soccer-vector-illustration-600w-2261781039.jpg');">
+            </div>
+            <b>Football Net</b>
+            <p class="description">mid size football net</p>
+            <button class="button-buy">100.99 $<img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
+                alt="Cart" /></button>
+            <button class="minus" type="button" onClick="clickMEm3()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
+                alt="minus" /></button>
+            <a id="clicks3">0</a>
+            <button class="plus" type="button" onClick="clickMEp3()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
+                alt="plus" /></button>
+          </div>
+          <div class="product">
+            <div class="image-placeholder"
+              style="background-image: url('https://www.shutterstock.com/image-vector/sport-backpack-sportswear-equipment-travel-600w-2164193993.jpg');">
+            </div>
+            <b>Bags</b>
+            <p class="description">green exercise bag</p>
+            <button class="button-buy">69.99 $<img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
+                alt="Cart" /></button>
+            <button class="minus" type="button" onClick="clickMEm4()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
+                alt="minus" /></button>
+            <a id="clicks4">0</a>
+            <button class="plus" type="button" onClick="clickMEp4()"><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
+                alt="plus" /></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}

@@ -1,350 +1,214 @@
 {% extends 'base.html' %}
 {% block head %}
     <title>Sports E-commerce</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+        .header {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    .header,
-    .footer {
-      background-color: #ffe89b;
-      text-align: center;
-      padding: 15px;
-    }
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 150px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        .dropdown {
+            position: relative;
+		    background: blue;
+        }
+        .dropdown select {
+		background: lightyellow;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .auth-buttons button {
+            margin-left: 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .main-banner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .sports-container {
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+		border: 1px solid #ccc;
+                 border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sports-section {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .sport-item {
+            text-align: center;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sport-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+        .more-button {
+            margin-left: 20px;
+            padding: 10px 20px;
+            background-color: #f0d18b;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+.price {
+            background-color: green;
+            color: white;
+            padding: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .out-of-stock {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .footer {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+        }
+.bold-text {
+            font-weight: bold;
+        }
+        .sub-text {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
 
-    /* Header left */
-    .auth-left-section {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .home {
-      padding-right: 10px;
-    }
-
-    /* Header right */
-    .auth-right-section {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .navbar select,
-    .navbar button {
-      margin: 0 5px;
-    }
-
-    .cart {
-      padding-right: 10px;
-    }
-
-    .profile {
-      padding-right: 10px;
-    }
-
-    /* Breadcrumb Navigation */
-    .breadcrumb {
-      padding: 10px;
-      font-size: 0.9em;
-      background-color: #f8f8f8;
-      text-align: left;
-      margin: 0 20px;
-    }
-
-    .breadcrumb a {
-      color: blue;
-      text-decoration: none;
-    }
-
-    .sport {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Banner */
-    .banner {
-      margin: 20px 0;
-      background-color: #f7f7f7;
-      border: 1px solid #ccc;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-      flex-grow: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 20px;
-    }
-
-    /* Main Content */
-    .main-content {
-      flex-grow: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .container {
-      width: 100%;
-    }
-
-    /* Product Cards */
-    .category-section {
-      margin: 20px 0;
-      background-color: #f7f7f7;
-      border: 1px solid #ccc;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-    }
-
-    .more-button-section {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .category-section h3 {
-      margin: 0 0 20px 0;
-    }
-
-    .products {
-      display: flex;
-      gap: 15px;
-      width: 100%;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .product {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 8px;
-      align-items: center;
-      transition: box-shadow 0.3s ease-in-out;
-    }
-
-    .product:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-      cursor: pointer;
-    }
-
-    .image-placeholder {
-      width: 150px;
-      height: 150px;
-      background-color: #ddd;
-      border: 1px dashed #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #888;
-      border-radius: 8px;
-      background-size: cover;
-      background-position: center;
-      margin-bottom: 10px;
-    }
-
-    .banner-placeholder {
-      width: 900px;
-      height: 290px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .banner-placeholder:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-      cursor: pointer;
-    }
-
-    .more-button {
-      background-color: #f0ad4e;
-      border: none;
-      padding: 8px 12px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .more-button:hover {
-      background-color: #e68a00;
-      transform: scale(1.05);
-    }
-
-    .footer-links a {
-      color: blue;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .products {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      .footer {
-        padding: 10px;
-      }
-
-      .more-button {
-        padding: 6px 10px;
-      }
-    }
-  </style>
+    </style>
 {% endblock %}
 
 {% block body %}
-     <!-- Banner -->
-  <div class="banner">
-    <div class="banner-placeholder"
-      style="background-image: url('https://as1.ftcdn.net/v2/jpg/07/51/81/66/1000_F_751816603_f5FlKb3EtpH8BednOjyazFknRCrsUee7.jpg');">
+
+    <div class="main-banner">
+        <img src="https://douxds.com/cdn/shop/articles/DALL_E_2024-05-11_16.36.35_-_A_diverse_group_of_beginners_at_a_gym_engaged_in_various_workout_activities._The_scene_includes_an_African_American_man_lifting_dumbbells_a_Caucasia_1000x.webp?v=1715460481" alt="Main Banner">
     </div>
-  </div>
 
-  <main class="main-content">
-    <div class="container">
-
-      <section class="category-section">
-        <h3>Clothing</h3>
-        <div class="products">
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-illustration/xray-mens-tshirt-isolated-over-600w-2378537987.jpg');">
+   <h2 style="text-align: center;">Sports</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+            <div class="sport-item">
+                <img src="https://spok.de/wp-content/uploads/2023/06/IMG_6682-jpg.webp" alt="Tennis">
+                <a href = "{{ url_for('category', sport='tennis') }}"><b>Tennis</b></a>
             </div>
-            <p>Shirts</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-illustration/cap-colour-front-3d-rendering-600w-1356197036.jpg');">
+            <div class="sport-item">
+                <img src="https://cdn.shopify.com/s/files/1/0551/0388/1250/files/cycling_benefits_styrkr.jpg?v=1676894320" alt="Cycling" alt="Cycling">
+                <a href = "{{ url_for('category', sport='cycling') }}"><b>Cycling</b></a>
             </div>
-            <p>Hats and Caps</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://noname-18af3.kxcdn.com/1155-medium_default/exercise-pants-unisex.jpg');">
+            <div class="sport-item">
+                <img src="https://kingsquaresportscentre.com/wp-content/uploads/2023/09/AdobeStock_520402576-scaled.jpeg" alt="Basketball">
+                <a href = "{{ url_for('category', sport='basketball') }}"><b>Basketball</b></a>
             </div>
-            <p>Pants and Shorts</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
+            <div class="sport-item">
+                <img src="https://cdn.prod.website-files.com/5ca5fe687e34be0992df1fbe/6235ea7fbaf601e8d3980228_boy-kicking-ball-on-football-field-2021-09-24-03-47-56-utc-min-min.jpg" alt="Football">
+                <a href = "{{ url_for('category', sport='football') }}"><b>Football</b></a>
             </div>
-            <p>Football</p>
-          </div>
-          <div class="more-button-section">
-            <button class="more-button" onclick="loadMore('clothing')">More</button>
-          </div>
         </div>
-
-      </section>
-
-      <section class="category-section">
-        <h3>Footwear</h3>
-        <div class="products">
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://merchandising.demon-tweeks.com/images/tr:h-300,w-300,q-80,c-at_max/media/catalog/product/s/p/spa_top_001287_nr-nov20_52.jpg');">
-            </div>
-            <p>Boots</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://media.viskanassets.com/v2/sportshopenprod/list/A132704_900100_01.jpg');">
-            </div>
-            <p>Sneakers</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.teamsportia.se/wp-content/uploads/2024/07/042591_0195751728966_Salomon_H24_5ff9aa06d6-324x324.jpg');">
-            </div>
-            <p>Flats</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.stadium.se/INTERSHOP/static/WFS/Stadium-SwedenB2C-Site/-/Stadium/sv_SE/Detail/382482_102_SOC_U%20SPORT%20SOCK%205P.png');">
-            </div>
-            <p>Socks</p>
-          </div>
-          <div class="more-button-section">
-            <button class="more-button" onclick="loadMore('footwear')">More</button>
-          </div>
-        </div>
-
-      </section>
-
-      <section class="category-section">
-        <h3>Accessories</h3>
-        <div class="products">
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-vector/professional-work-gloves-protective-builders-600w-2424205549.jpg');">
-            </div>
-            <p>Gloves</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg');">
-            </div>
-            <p>Football</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-vector/football-goal-soccer-vector-illustration-600w-2261781039.jpg');">
-            </div>
-            <p>Football Net</p>
-          </div>
-          <div class="product">
-            <div class="image-placeholder"
-              style="background-image: url('https://www.shutterstock.com/image-vector/sport-backpack-sportswear-equipment-travel-600w-2164193993.jpg');">
-            </div>
-            <p>Bags</p>
-          </div>
-          <div class="more-button-section">
-            <button class="more-button" onclick="loadMore('Accessories')">More</button>
-          </div>
-        </div>
-
-      </section>
+        <button class="more-button">More</button>
     </div>
-  </main>
 
+    <h2 style="text-align: center;">Category</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+            <div class="sport-item">
+                <img src="https://media.istockphoto.com/id/1321017606/photo/multicolored-sport-sleeveless-t-shirts-and-shirts.jpg?s=612x612&w=0&k=20&c=NddwChiHYyB2Swr3emp94PiSGHV2RQXzghkmmj3KkWo=" alt="clothing">
+                <p class="bold-text">Clothing</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://truesport.org/wp-content/uploads/choosing-footwear-post.jpg" alt="footware">
+                <p class="bold-text">Footware</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://www.snapsports.com/wp-content/uploads/2021/04/sports-pack.jpeg" alt="Accessories">
+                <p class="bold-text">Accessories</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://cdn.prod.website-files.com/60bbd0bb03425613b8352d51/65e74d223e723f2fa7fca0b2_Nutrishop_StorePhoto_11.jpg" alt="Sport Nutrition">
+                <p class="bold-text">Sport Nutrition</p>
+            </div>
+        </div>
+        <button class="more-button">More</button>
+    </div>
+
+    <h2 style="text-align: center;">Products</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+
+            <div class="sport-item">
+                <img src="https://beihasara.com/wp-content/uploads/2023/04/5-kg-home-gym-dumbbell-set-10-scorpion-original-imafuskvwjvxtrv2.jpeg" alt="5 kg dumbells">
+                <p class="bold-text">5 kg dumbells</p>
+  <p class="sub-text">Handheld weights</p>
+                {% if current_user.is_authenticated %}
+                    <span class="price">10.99 $</span>
+                {%endif%}
+            </div>
+
+            <div class="sport-item">
+                <img src="https://8mi.de/cdn/shop/files/ZipGrey.png?v=1699116639&width=1445" alt="Zip-up hoodie">
+                <p class="bold-text">Zip-up hoodie</p>
+    <p class="sub-text">Outerwear with a front zipper</p>
+                {% if current_user.is_authenticated %}
+                    <span class="out-of-stock">Out of Stock</span>
+                {%endif%}
+            </div>
+
+            <div class="sport-item">
+                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/04a000d26ed14562bc818fdc4b6c0fc0_9366/MLS_24_Club_Ball_Green_IP1627_01_standard.jpg" alt="Green soccer ball">
+                <p class="bold-text">Green soccer ball</p>
+<p class="sub-text">Soccer Ball in green color</p>
+                 {% if current_user.is_authenticated %}
+                    <span class="price">10.99 $</span>
+                 {%endif%}
+            </div>
+
+<div class="sport-item">
+                <img src="https://www.sbj-sportland.de/images/product_images/original_images/Boxhandschuhe-Schwarz---frontal-09-2086-SW.JPG" alt="black gloves">
+                <p class="bold-text">Black gloves</p>
+<p class="sub-text">Soccer gloves in black</p>
+            {% if current_user.is_authenticated %}
+                <span class="price">10.99 $</span>
+            {%endif%}
+
+            </div>
+        </div>
+        <button class="more-button">More</button>
+    </div>
 {% endblock %}
