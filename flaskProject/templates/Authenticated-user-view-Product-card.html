@@ -130,7 +130,7 @@
     }
 
     .view-container {
-      width: 80%;
+      width: 95%;
       align-items: flex-start;
 
     }
@@ -145,8 +145,8 @@
     }
 
     .view-image-placeholder {
-      width: 250px;
-      height: 250px;
+      width: 150px;
+      height: 150px;
       border: 1px dashed #ccc;
       display: flex;
       align-items: center;
@@ -188,6 +188,7 @@
     .add-cart {
       background-color: #45808e;
       border-radius: 4px;
+      margin-bottom: 5px;
     }
 
     .buy-now {
@@ -197,8 +198,10 @@
 
     .description0 {
       width: 100%;
-      height: 50px;
-
+      height: 100px;
+      pointer-events: none;
+      border: 1px solid #eee;
+      padding: 20px;
     }
 
     .button-out-of-stock {
@@ -222,10 +225,59 @@
       color: green;
     }
 
+    .svalue {
+      color: #38751c;
+      font-weight: bold;
+    }
+
     .buy-buttons {
       display: grid;
-      width: 30%;
+      width: 100%;
       align-items: end;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .column {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .info {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .value {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      /* Fit around contents */
+    }
+
+    span::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /* Stretch over containing block */
+      cursor: text;
+      /* restore I-beam cursor */
+    }
+
+    /* Restore context menu while editing */
+    input:focus {
+      position: relative;
+      z-index: 1;
     }
 
     /* Responsive Design */
@@ -256,58 +308,6 @@
       }
     }
   </style>
-
-  <script>
-    var clicks1 = 0;
-    var clicks2 = 0;
-    var clicks3 = 0;
-    var clicks4 = 0;
-
-    function clickMEp1() {
-      clicks1 += 1;
-      document.getElementById("clicks1").innerHTML = clicks1;
-    }
-    function clickMEm1() {
-      if (clicks1 > 0) {
-        clicks1 -= 1;
-        document.getElementById("clicks1").innerHTML = clicks1;
-      }
-    }
-
-    function clickMEp2() {
-      clicks2 += 1;
-      document.getElementById("clicks2").innerHTML = clicks2;
-    }
-    function clickMEm2() {
-      if (clicks2 > 0) {
-        clicks2 -= 1;
-        document.getElementById("clicks2").innerHTML = clicks2;
-      }
-    }
-
-    function clickMEp3() {
-      clicks3 += 1;
-      document.getElementById("clicks3").innerHTML = clicks3;
-    }
-    function clickMEm3() {
-      if (clicks3 > 0) {
-        clicks3 -= 1;
-        document.getElementById("clicks3").innerHTML = clicks3;
-      }
-    }
-
-    function clickMEp4() {
-      clicks4 += 1;
-      document.getElementById("clicks4").innerHTML = clicks4;
-    }
-    function clickMEm4() {
-      if (clicks4 > 0) {
-        clicks4 -= 1;
-        document.getElementById("clicks4").innerHTML = clicks4;
-      }
-    }
-
-  </script>
 </head>
 
 <body>
@@ -355,40 +355,43 @@
     <div class="view-container">
 
       <div class="view-product">
-        <div class="view-image-placeholder"
-          style="background-image: url('https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQNiHc6WNmvcjPF6t0BTpbeUT1asxbhmUNDyzMeyszRp5mRoK5Mg7vmll6kdbbTyCpg2uTMdsCiafnDSAgzA-dMIMZkC5Bc_eklu3D0EmItUU-EoDoCvQ5E');">
+        <div class="container">
+          <div class="column">
+            <div class="view-image-placeholder"
+              style="background-image: url('https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQNiHc6WNmvcjPF6t0BTpbeUT1asxbhmUNDyzMeyszRp5mRoK5Mg7vmll6kdbbTyCpg2uTMdsCiafnDSAgzA-dMIMZkC5Bc_eklu3D0EmItUU-EoDoCvQ5E');">
+            </div>
+          </div>
+          <div class="column">
+            <div class="info">Name:</div>
+            <div class="info">Price:</div>
+            <div class="info">Quantity:</div>
+            <div class="info">Category:</div>
+            <div class="info">Status:</div>
+          </div>
+          <div class="column">
+            <div class="value">Running Shorts</div>
+            <div class="value">25.99 $</div>
+            <div class="value">
+              <label>
+                <span><input type="number" min="0" max="99" value="0"></span>
+              </label>
+            </div>
+            <div class="value"><a href="#">Clothing</a>:</div>
+            <div class="svalue">In stock</div>
+
+          </div>
+          <div class="column">
+            <div class="buy-buttons">
+              <button class="add-cart">Add to Cart <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
+                  alt="Cart" /></button>
+
+              <button class="buy-now">Buy now <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAB2AAAAdgFOeyYIAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAALBJREFUOI3N0k1qAkEUBODP4AlE/FllZ/YuhdGT6EVyiUD0Bl4luFDvkG1UBNG9LvIkg0yrgyApKJqCetVF9+M/o4KPYKXscBtLHIMLtFK3FGGKGjahG1hjeGl8SQRk+MQ++I5dkbGaCPhGL6eXwbuR4eC39hfeygyf0YnhdYT1i0y3vmcS5zYCBpeG1COO0c3pGV7LNJiijlXoJn4wuto3hxbm/hZpLrFI1/DQKj8PJ3HTIG5Fcmk4AAAAAElFTkSuQmCC"
+                  alt="buy" /></button>
+            </div>
+          </div>
         </div>
-
-        <div class="buy-buttons">
-          <button class="add-cart">Add to Cart <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
-              alt="Cart" /></button>
-
-          <button class="buy-now">Buy now <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAB2AAAAdgFOeyYIAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAALBJREFUOI3N0k1qAkEUBODP4AlE/FllZ/YuhdGT6EVyiUD0Bl4luFDvkG1UBNG9LvIkg0yrgyApKJqCetVF9+M/o4KPYKXscBtLHIMLtFK3FGGKGjahG1hjeGl8SQRk+MQ++I5dkbGaCPhGL6eXwbuR4eC39hfeygyf0YnhdYT1i0y3vmcS5zYCBpeG1COO0c3pGV7LNJiijlXoJn4wuto3hxbm/hZpLrFI1/DQKj8PJ3HTIG5Fcmk4AAAAAElFTkSuQmCC"
-              alt="buy" /></button>
-        </div>
-
-        <p>Name:</p>
-        <b>Running Shorts</b>
-
-        <p>Price:</p>
-        <b>25.99 $</b>
-
-        <p>Quantity:</p>
-        <button class="minus" type="button" onClick="clickMEm0()"><img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
-            alt="minus" /></button>
-        <a id="clicks0">0</a>
-        <button class="plus" type="button" onClick="clickMEp0()"><img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
-            alt="plus" /></button>
-
-        <p>Category:</p>
-        <a href="#">Clothing</a>
-
-        <p>Status:</p>
-        <b class="stock">In stock</b>
 
         <p>Description:</p>
         <textarea
@@ -415,13 +418,9 @@
             <button class="button-buy">10.00 $<img
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
                 alt="Cart" /></button>
-            <button class="minus" type="button" onClick="clickMEm1()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
-                alt="minus" /></button>
-            <a id="clicks1">0</a>
-            <button class="plus" type="button" onClick="clickMEp1()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
-                alt="plus" /></button>
+            <label>
+              <span><input type="number" min="0" max="99" value="0"></span>
+            </label>
           </div>
           <div class="product">
             <div class="image-placeholder"
@@ -442,13 +441,9 @@
             <button class="button-buy">100.99 $<img
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
                 alt="Cart" /></button>
-            <button class="minus" type="button" onClick="clickMEm3()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
-                alt="minus" /></button>
-            <a id="clicks3">0</a>
-            <button class="plus" type="button" onClick="clickMEp3()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
-                alt="plus" /></button>
+            <label>
+              <span><input type="number" min="0" max="99" value="0"></span>
+            </label>
           </div>
           <div class="product">
             <div class="image-placeholder"
@@ -459,13 +454,9 @@
             <button class="button-buy">69.99 $<img
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADESURBVDiNndJNagJBEIbhZwYX3iEg6s4r5BTmHp7Bg5ilQYgGEfJDdgFP4d4LGFdjEMxiWtRhhpn2g1p0V9dbVV2V4BEPOOILB5Ha4BRsFBt8VoIF1vcEnjXEEu+at/FzfWhj79JOE5umV4AsZI/RW/FiGJF9H6q+URu/DQEvkBYAGT5jyi8CyPeiTlt8VwG68n1I5WMus06oVqsEsMMArzVVzLAqA4zxh34NoFJPeEbvTr+dfEyTJv6yT5yHRx8VgBv/P/V7RzGEtulPAAAAAElFTkSuQmCC"
                 alt="Cart" /></button>
-            <button class="minus" type="button" onClick="clickMEm4()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB0QAAAdEBDJFM8wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAsSURBVDiNY/z//z8DJYCJIt2jBlDHAEYGBoZNDAwMbmTq30W5C0YT0nAwAABWDAfKyYDCGQAAAABJRU5ErkJggg=="
-                alt="minus" /></button>
-            <a id="clicks4">0</a>
-            <button class="plus" type="button" onClick="clickMEp4()"><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACESURBVDiNxZPBCYAwFEOfolPoKOJRh/DYi4s5hB6dorqKYj20hyL+UhQxEAg0hOb/FmSUwAosQBHwiVCAcVSSKQ0E5IKODojC/wEZdtqN0z6qiz4u5zswgV2TeUj9ukKCfSTtTYUa6JwegPmmwhgK772r9pLp/zV+GrAJOholoB3F73wCi+8iy7hQQ6kAAAAASUVORK5CYII="
-                alt="plus" /></button>
+            <label>
+              <span><input type="number" min="0" max="99" value="0"></span>
+            </label>
           </div>
         </div>
       </section>
