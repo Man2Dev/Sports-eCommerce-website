@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <h1>{{current_user.is_authenticated}}</h1>
+    <h1>{{current_user}}</h1>
+{% endblock %}

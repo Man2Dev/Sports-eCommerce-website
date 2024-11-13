@@ -27,6 +27,7 @@
                     window.location.href = selectedPage;
                 }
             }
+
         </script>
         {% block head %}{% endblock %}
     </head>
@@ -42,19 +43,19 @@
                         <li>
                             <select id="categoryDropdown" onchange="navigateToCategory()">
                                 <option value="" disabled selected>Sports</option>
-                                <option value="{{ url_for('category', sport='basketball') }}">Basketball</option>
-                                <option value="{{ url_for('category', sport='football') }}">Football</option>
-                                <option value="{{ url_for('category', sport='tennis') }}">Tennis</option>
-                                <option value="{{ url_for('category', sport='cycling') }}">Cycling</option>
+                                <option value="{{ url_for('sport', sport='basketball') }}">Basketball</option>
+                                <option value="{{ url_for('sport', sport='football') }}">Football</option>
+                                <option value="{{ url_for('sport', sport='tennis') }}">Tennis</option>
+                                <option value="{{ url_for('sport', sport='cycling') }}">Cycling</option>
                             </select>
                         </li>
                         {% if current_user.is_authenticated %}
-                            {% if current_user.type == 'seller'%}
+                            {% if current_user.type == 'customer'%}
                                 <li><a href = "{{ url_for('dashboard') }}">Dashboard</a></li>
+                                <li><a href = "{{ url_for('cart') }}">Cart</a></li>
                                 <li><a href = "{{ url_for('logout') }}">Logout</a></li>
                             {% else %}
                                 <li><a href = "{{ url_for('dashboard') }}">Dashboard</a></li>
-                                <li><a href = "{{ url_for('cart') }}">Cart</a></li>
                                 <li><a href = "{{ url_for('logout') }}">Logout</a></li>
                             {% endif %}
                         {% else %}

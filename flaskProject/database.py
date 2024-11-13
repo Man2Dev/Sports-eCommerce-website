@@ -69,13 +69,16 @@ class Category(db.Model):
     __tablename__ = 'category'
     id=db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+    image_url = db.Column(db.String(300), nullable=False)
+
     def __repr__(self):
-        return f'Category {self.id} {self.name} created'
+        return f'{self.image_url}:{self.name}'
 
 class Sport(db.Model):
     __tablename__ = 'sport'
     id=db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+    image_url = db.Column(db.String(300), nullable=False)
     def __repr__(self):
         return f'Sport {self.id} {self.name} created'
 
@@ -97,7 +100,7 @@ class Item(db.Model):
 class Item_Images(db.Model):
     __tablename__ = 'item_images'
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'), nullable=False, primary_key=True)
-    image_url = db.Column(db.String(100), nullable=False, primary_key = True)
+    image_url = db.Column(db.String(300), nullable=False, primary_key = True)
     def __repr__(self):
         return f'Item_image {self.item_id} {self.image_url}created'
 

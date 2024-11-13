@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from populate_database import populate_database
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:nope@localhost/software_development_srh'
 app.config['SECRET_KEY'] = 'jjkasbdjhbfjbh23jhbhaskasddb1299910'

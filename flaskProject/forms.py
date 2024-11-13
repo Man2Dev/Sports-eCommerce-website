@@ -17,8 +17,8 @@ class RegistrationForm(FlaskForm):
                              validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                              validators=[DataRequired(),EqualTo('password')])
-    type = SelectField('Account type',
-                       choices=[('Seller'), ('Customer')])
+    #type = SelectField('Account type',
+    #                   choices=[('Seller'), ('Customer')])
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
@@ -33,3 +33,26 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password',
                              validators=[DataRequired()])
     submit = SubmitField('Log In')
+
+
+class SellerRegistrationForm(FlaskForm):
+    name = StringField('Name',
+                             validators=[DataRequired()])
+    surname = StringField('Surname',
+                             validators=[DataRequired()])
+    email = StringField('Email',
+                        validators=[DataRequired(),Email()])
+    phonenum = StringField('Phone')
+    address = StringField('Address',
+                             validators=[DataRequired()])
+    password = PasswordField('password',
+                             validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                             validators=[DataRequired(),EqualTo('password')])
+
+    submit = SubmitField('Sign Up')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is taken.')
