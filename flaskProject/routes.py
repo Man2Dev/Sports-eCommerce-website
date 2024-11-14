@@ -1,7 +1,7 @@
 import re
 import os
 from datetime import datetime
-
+from extra_funct import getdrop
 from sklearn.gaussian_process.kernels import Product
 from sqlalchemy import desc
 from functools import wraps
@@ -37,18 +37,19 @@ def require_login():
 def index():
     sport = Sport.query.all()
     sport_dict = {each_sport.name: each_sport.image_url for each_sport in sport}
-
+    drop = getdrop()
     categorys = Category.query.all()
     categorys_dict = {category.name: category.image_url for category in categorys}
 
     products = Item.query.all()
     products_dict = {product.name: [product.price,Item_Images.query.filter_by(item_id=product.id).first().image_url] for product in products}
-    return render_template('index.html', sports = sport_dict, categorys=categorys_dict, products = products_dict )
+    return render_template('index.html', category_options=drop, sports = sport_dict, categorys=categorys_dict, products = products_dict )
 
 
 #redirect to the homepage
 @app.route("/login", methods=['GET','POST'])
 def login():
+    drop = getdrop()
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
@@ -60,10 +61,11 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', category_options=drop, title='Login', form=form)
 
 @app.route("/register", methods=['GET','POST'])
 def register():
+    drop = getdrop()
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -73,7 +75,7 @@ def register():
         search_user_by_phone = User.query.filter_by(phonenum=form.phonenum.data).first()
         if search_user_by_email  or search_user_by_phone:
             flash('User already exists!', 'error')
-            return render_template('register.html', form=form, messages='user exists')
+            return render_template('register.html', category_options=drop, form=form, messages='user exists')
 
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
@@ -91,16 +93,17 @@ def register():
         db.session.commit()
         flash(f"Your account is created!", "success")
         return redirect(url_for("index"))              #UPDATE THE REDIRECTION
-    return render_template('register.html', form=form)
+    return render_template('register.html', category_options=drop, form=form)
 
 @app.route("/dashboard", methods=['GET','POST'])
 @nocache
 @login_required
 def dashboard():
+    drop = getdrop()
     if current_user.type == 'seller':
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', category_options=drop)
     elif current_user.type == 'customer':
-        return render_template('dashboardcustomer.html')
+        return render_template('dashboardcustomer.html', category_options=drop)
     else:
         form = SellerRegistrationForm()
         if form.validate_on_submit():
@@ -109,7 +112,7 @@ def dashboard():
             search_user_by_phone = User.query.filter_by(phonenum=form.phonenum.data).first()
             if search_user_by_email or search_user_by_phone:
                 flash('User already exists!', 'error')
-                return render_template('register.html', form=form, messages='user exists')
+                return render_template('register.html', category_options=drop, form=form, messages='user exists')
 
             hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             user = Seller(name=form.name.data, surname=form.surname.data, email=form.email.data,
@@ -119,43 +122,50 @@ def dashboard():
             flash(f"Seller account is created!", "success")
             return redirect(url_for("dashboard"))
 
-        return render_template('superuserdashboard.html', form=form)
+        return render_template('superuserdashboard.html', category_options=drop, form=form)
 
 
 
 @app.route("/products", methods=['GET','POST'])
 def products():
-    return render_template('products.html')
+    drop = getdrop()
+    return render_template('products.html', category_options=drop)
 
 
 @app.route("/cart", methods=['GET','POST'])
 @nocache
 @login_required
 def cart():
-    return render_template('cart.html')
+    drop = getdrop()
+    return render_template('cart.html', category_options=drop)
 
 @app.route('/sport/<sport>')
 def sport(sport):
+    drop = getdrop()
+    drop.remove(sport)
     url = Sport.query.filter_by(name=sport).first_or_404().image_url
-    return render_template('sports.html', Ssport=sport, image = url)
+    return render_template('sports.html',main_option=sport, category_options=drop, Ssport=sport, image = url)
 
 @app.route('/category/<category>')
 def category(category):
+    drop = getdrop()
     link = Category.query.filter_by(name=category).first_or_404()
-    return render_template('category.html', Category=link.name, image = link.image_url)
+    return render_template('category.html', category_options=drop, Category=link.name, image = link.image_url)
 
 @app.route('/product/<product>')
 def product(product):
+    drop = getdrop()
     prod = Item.query.filter_by(name=product).first_or_404()
     images = Item_Images.query.filter_by(item_id=prod.id).first()
     category = Category.query.filter_by(id=prod.category).first_or_404().name
-    return render_template('card.html', product=prod, images=images, category=category)
+    return render_template('card.html', category_options=drop, product=prod, images=images, category=category)
 
 
 
 @app.route("/card_page", methods=['GET','POST'])
 def card_page():
-    return render_template('card.html')
+    drop = getdrop()
+    return render_template('card.html', category_options=drop)
 
 @app.route("/logout")
 @login_required

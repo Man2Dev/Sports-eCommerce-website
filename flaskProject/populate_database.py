@@ -26,10 +26,10 @@ def populate_database():
                        "(4, 'Sport Nutrition', 'https://cdn.prod.website-files.com/60bbd0bb03425613b8352d51/65e74d223e723f2fa7fca0b2_Nutrishop_StorePhoto_11.jpg');")
 
         cursor.execute("INSERT INTO item(id, price, status,amount,name,description,category,sport) VALUES"
-                       "(1, 10.99, 'show', 5, '5 kg dumbells', 'Handheld weights', 3, 2),"
-                       "(2, 5.99 , 'show', 10, 'Zip-up hoodie', 'Outerwear with a front zipper', 1, 3),"
-                       "(3, 13.99 ,'show', 1, 'Green soccer ball', 'Soccer Ball in green color', 3, 4),"
-                       "(4, 12.5 , 'show', 15, 'Black gloves', 'Soccer gloves in black', 3, 4);")
+                       "(1, 10.99, 'In Stock', 5, '5 kg dumbells', 'Handheld weights', 3, 2),"
+                       "(2, 5.99 , 'In Stock', 10, 'Zip-up hoodie', 'Outerwear with a front zipper', 1, 3),"
+                       "(3, 13.99 ,'In Stock', 1, 'Green soccer ball', 'Soccer Ball in green color', 3, 4),"
+                       "(4, 12.5 , 'In Stock', 15, 'Black gloves', 'Soccer gloves in black', 3, 4);")
 
         cursor.execute("INSERT INTO item_images(item_id, image_url) VALUES"
                        "(1, 'https://beihasara.com/wp-content/uploads/2023/04/5-kg-home-gym-dumbbell-set-10-scorpion-original-imafuskvwjvxtrv2.jpeg'),"
