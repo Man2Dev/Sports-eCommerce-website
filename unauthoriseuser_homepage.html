@@ -1,0 +1,271 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+
+        .header,
+ 	.footer  {
+	    background-color: ;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+	 /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+	
+   	.home img {
+            width:70px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: left;
+        }
+        .logo img {
+            width:55px;
+            height: 55px;
+            margin-right: 10px;
+           
+        }
+        .nav {
+            display: flex;
+            align-items: center;    
+        }
+        .dropdown {
+            position: relative
+		background: blue;
+        }
+        .dropdown select {
+		background: lightyellow;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .auth-buttons button {
+            margin-left: 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+	.main-banner img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        } 
+        .sports-container {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+		border: 1px solid #ccc;
+                 border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sports-section {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .sport-item {
+            text-align: center;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sport-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+        .more-button {
+            margin-left: 20px;
+            padding: 10px 20px;
+            background-color: #f0d18b;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+	.price {
+            background-color: green;
+            color: white;
+            padding: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .out-of-stock {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+       
+.bold-text {
+            font-weight: bold;
+        }
+        .sub-text {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
+
+    </style>
+</head>
+<body>
+	 <!-- Header -->
+
+    <div class="header">
+ <!--left-->
+
+       <section class="auth-left-section">
+      <div class="home">
+        
+            <img src="https://static.vecteezy.com/system/resources/previews/022/013/913/large_2x/home-icon-illustration-image-vector.jpg" alt="home">
+            <span></span>
+        </div>
+<div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2000/2000047.png" alt="Logo" />
+      </div>
+    </section>
+
+<!--right-->
+    <section class="auth-right-section">
+
+        <div class="nav">
+            <div class="dropdown">
+                <select>
+                    <option>Sports</option>
+                    <option>Running</option>
+                    <option>Cycling</option>
+                    <option>Basketball</option>
+                </select>
+            </div>
+            <div class="auth-buttons">
+                <button>Sign In</button>
+                <button>Sign Up</button>
+            </div>
+        </div>
+      </section>
+  </div>
+
+<!-- Banner -->
+
+    <div class="main-banner">
+        <img src="https://png.pngtree.com/thumb_back/fw800/background/20230901/pngtree-a-group-of-sports-equipment-on-a-surface-image_13169788.jpg" alt="Main Banner">
+    </div>
+
+   <h2 style="text-align: center;">Sports</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+            <div class="sport-item">
+                <img src="https://images2.alphacoders.com/109/1093569.jpg" alt="Running" alt="Running">
+                <p class="bold-text">Running</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg" alt="Cycling" alt="Cycling">
+                <p class="bold-text">Cycling</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://wallpapers.com/images/hd/hd-basketball-ball-and-ring-jz0b89t1m91jb4tn.jpg" alt="Basketball">
+                <p class="bold-text">Basketball</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg" alt="Football">
+                <p class="bold-text">Football</p>
+            </div>
+        </div>
+        <button class="more-button">More</button>
+    </div>
+
+<h2 style="text-align: center;">Category</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+            <div class="sport-item">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/5/312100606/KG/ZV/BY/8505276/sports-apparel-500x500.jpg" alt="clothing">
+                <p class="bold-text">Clothing</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://media.viskanassets.com/v2/sportshopenprod/list/A132704_900100_01.jpg" alt="footware">
+                <p class="bold-text">Footware</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://st2.depositphotos.com/1006197/5800/i/450/depositphotos_58007433-stock-photo-sports-accessories-paddles-sticks-balls.jpg" alt="Accessories">
+                <p class="bold-text">Accessories</p>
+            </div>
+            <div class="sport-item">
+                <img src="https://fmcggurus.com/wp-content/uploads/2022/03/AdobeStock_261826484-min-1024x683.jpeg" alt="Sport Nutrition">
+                <p class="bold-text">Sport Nutrition</p>
+            </div>
+        </div>
+        <button class="more-button">More</button>
+    </div>
+
+<h2 style="text-align: center;">Products</h2>
+    <div class="sports-container" >
+        <div class="sports-section">
+            
+            <div class="sport-item">
+                <img src="https://www.bmcsports.ie/images/fitness-mad-pair-of-5kg-dumbbells-black-p28845-91994_image.jpg" alt="5 kg dumbells">
+                <p class="bold-text">5 kg dumbells</p>
+  <p class="sub-text">Handheld weights</p>
+                <span class="price">10.99 $</span>
+            </div>
+
+            <div class="sport-item">
+                <img src="https://i.ebayimg.com/images/g/BqAAAOSwXaBg8fcD/s-l1200.jpg" alt="Zip-up hoodie">
+                <p class="bold-text">Zip-up hoodie</p>
+<p class="sub-text">Outerwear with a front zipper</p>
+                <span class="out-of-stock">Out of Stock</span>
+            </div>
+
+            <div class="sport-item">
+                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/04a000d26ed14562bc818fdc4b6c0fc0_9366/MLS_24_Club_Ball_Green_IP1627_01_standard.jpg" alt="Green soccer ball">
+                <p class="bold-text">Green soccer ball</p>
+<p class="sub-text">Soccer Ball in green color</p>
+                <span class="price">10.99 $</span>
+            </div>
+
+<div class="sport-item">
+                <img src="https://m.media-amazon.com/images/I/71UB4t5YdgL._AC_UF894,1000_QL80_.jpg" alt="black gloves">
+                <p class="bold-text">Black gloves</p>
+<p class="sub-text">Soccer gloves in black</p>
+                <span class="price">10.99 $</span>
+
+            </div>
+        </div>
+        <button class="more-button">More</button>
+    </div>
+<!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 contributors - team 3</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>
+
+
+</body>
+</html>

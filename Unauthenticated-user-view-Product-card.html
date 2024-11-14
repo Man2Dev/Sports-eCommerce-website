@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports E-commerce</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+	.bold-text {
+            font-weight: bold;
+        }
+
+   .header,
+ 	.footer  {
+	    background-color: ;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+	 /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+	
+   	.home img {
+            width:70px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: left;
+        }
+        .logo img {
+            width:55px;
+            height: 55px;
+            margin-right: 10px;
+           
+        }
+        .nav {
+            display: flex;
+            align-items: center;    
+        }
+        .dropdown {
+            position: relative
+		background: blue;
+        }
+        .dropdown select {
+		background: lightyellow;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .auth-buttons button {
+            margin-left: 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+	.main-banner img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        } 
+
+
+    .navbar select,
+    .navbar button {
+      margin: 0 5px;
+    }
+
+    .cart {
+      padding-right: 10px;
+    }
+
+    .profile {
+      padding-right: 10px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Sub Content */
+    .sub-content {
+      display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+		border: 1px solid #ccc;
+                 border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    /* Product Cards */
+    .category-section {display: flex;
+            justify-content: space-around;
+            gap: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .more-button-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-section h3 {
+      display: flex;
+            justify-content: space-around;
+            gap: 20px;
+    }
+
+    .products {
+      display: flex;
+            justify-content: space-around;
+            gap: 20px;
+
+    }
+
+   .product {
+            text-align: center;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+
+    .view-container {
+      width: 95%;
+      align-items: flex-start;
+
+    }
+
+    .view-product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .view-image-placeholder {
+      width: 150px;
+      height: 150px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+
+    .image-placeholder {
+      width: 150px;
+      height: 150px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+
+    .count {
+      margin-top: 3%;
+    }
+
+    .button-buy {
+	
+
+      margin-top: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .add-cart {
+	height : 20px;
+weight : 20px;
+      background-color: #45808e;
+      border-radius: 4px;
+      margin-bottom: 5px;
+    }
+
+    .buy-now {
+      background-color: #38751c;
+      border-radius: 10px;
+    }
+
+    .description0 {
+      width: 100%;
+      height: 100px;
+      pointer-events: none;
+      border: 1px solid #eee;
+      padding: 20px;
+    }
+
+    .button-out-of-stock {
+      background-color: #ff0000;
+      border: none;
+      padding: 4px 12px;
+      margin-top: 3%;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-links a {
+      color: blue;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .stock {
+      color: green;
+    }
+
+    .svalue {
+      color: #38751c;
+      font-weight: bold;
+    }
+
+    .buy-buttons {
+      display: grid;
+      width: 100%;
+      align-items: end;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .column {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .info {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .value {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      /* Fit around contents */
+    }
+
+    .sing-in {
+      padding-right: 5px;
+    }
+
+    /* Breadcrumb Navigation */
+    .breadcrumb {
+      padding: 10px;
+      font-size: 0.9em;
+      background-color: #f8f8f8;
+      text-align: left;
+      margin: 0 20px;
+    }
+
+    .breadcrumb a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    .sport {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    span::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /* Stretch over containing block */
+      cursor: text;
+      /* restore I-beam cursor */
+    }
+
+    /* Restore context menu while editing */
+    input:focus {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product {
+        height: 100%;
+      }
+
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .footer {
+        padding: 10px;
+      }
+
+      @media (forced-colors: active) {
+        [aria-disabled="true"] {
+          border-color: GrayText;
+          color: GrayText;
+        }
+      }
+    }
+.image-size {
+      width: 200px;
+      height: 150px;
+    }
+.sports-container {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+		border: 1px solid #ccc;
+                 border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sports-section {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .sport-item {
+            text-align: center;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sport-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+  /* Inner container for nested columns */
+  .inner-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    justify-items: start;
+    align-items: start;
+    justify-content: start;
+    align-content: space-evenly;
+
+  }
+
+  /* Nested column styling */
+  .nested-column {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+.other-image-size {
+      width: 50px;
+      height: 50px;
+  </style>
+</head>
+
+<body>
+   <!-- Header -->
+
+    <div class="header">
+ <!--left-->
+
+       <section class="auth-left-section">
+      <div class="home">
+        
+            <img src="https://static.vecteezy.com/system/resources/previews/022/013/913/large_2x/home-icon-illustration-image-vector.jpg" alt="home">
+            <span></span>
+        </div>
+<div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2000/2000047.png" alt="Logo" />
+      </div>
+    </section>
+
+<!--right-->
+    <section class="auth-right-section">
+
+        <div class="nav">
+            <div class="dropdown">
+                <select>
+                    <option>Sports</option>
+                    <option>Running</option>
+                    <option>Cycling</option>
+                    <option>Basketball</option>
+                </select>
+            </div>
+            <div class="auth-buttons">
+                <button>Sign In</button>
+                <button>Sign Up</button>
+            </div>
+        </div>
+      </section>
+  </div>
+
+
+
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="view-container">
+
+      <div class="view-product">
+        <div class="container">
+          <div class="column">
+            <div class="view-image-placeholder"
+              style="background-image: url('https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQNiHc6WNmvcjPF6t0BTpbeUT1asxbhmUNDyzMeyszRp5mRoK5Mg7vmll6kdbbTyCpg2uTMdsCiafnDSAgzA-dMIMZkC5Bc_eklu3D0EmItUU-EoDoCvQ5E');">
+            </div>
+ </div>
+
+    
+          <div class="column">
+           
+         <h1>Running Shorts</h1>
+<div style="height: 20px;"></div>
+      <p><strong>Price:</strong> 25.99 $</p>
+	<p><strong>Size:</strong> 
+            <div class="dropdown">
+                <select>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+		    <option>XL</option>
+		    <option>XXL</option>
+                </select>
+ 	</div>
+             </p>
+      <p><strong>Quantity:</strong> 
+		
+            <div class="dropdown">
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+		    <option>5</option>
+		    <option>6</option>
+		    <option>7</option>
+		    <option>8</option>
+		    <option>9</option>
+		    <option>10</option>
+
+                </select>
+ 	</div>
+           </p>
+      
+            <div><p><strong>Category:</strong> <a href="#">Clothing</a></p></div>
+
+    <p><strong>Status:</strong>  
+<div class="svalue"><span class="status">In Stock</span></p> </div>
+
+
+	</div>
+	</div>
+          </div>
+        </div>
+
+        <p class="bold-text">Description:</p>
+        <textarea
+          class="description0">Lightweight and breathable shorts designed for maximum comfort and performance during runs. Ideal for rm weather and intense workouts.</textarea>
+
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- Sub Content -->
+  
+      
+        <h3 style="text-align: center;">Recommendation</h3>
+
+<div style="height: 20px;"></div>
+
+<div class="category-section">
+        <div class="products">
+          <div class="product">
+       <img src=" https://www.shutterstock.com/image-vector/professional-work-gloves-protective-builders-600w-2424205549.jpg">
+           
+            <b>Gloves</b>
+            <p class="description">black football glove</p>
+            <button class="button-buy">10.00 $</button>
+          </div>
+          <div class="product">
+            <img src="https://www.shutterstock.com/image-vector/football-ball-black-white-vector-260nw-2293492975.jpg">
+            <b>Football</b>
+            <p>mid size football</p>
+            <button class="button-out-of-stock">out of stock </button>
+          </div>
+          <div class="product">
+           <img src="https://www.shutterstock.com/image-vector/football-goal-soccer-vector-illustration-600w-2261781039.jpg">
+            <b>Football Net</b>
+            <p class="description">mid size football net</p>
+            <button class="button-buy">100.99 $</button>
+          </div>
+          <div class="product">
+           <img src=" https://www.shutterstock.com/image-vector/sport-backpack-sportswear-equipment-travel-600w-2164193993.jpg">
+            <b>Bags</b>
+            <p class="description">green exercise bag</p>
+            <button class="button-buy">69.99 $</button>
+	</div>
+          </div>
+        </div>
+      
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 contributors - team 3</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>
+</body>
+
+</html>

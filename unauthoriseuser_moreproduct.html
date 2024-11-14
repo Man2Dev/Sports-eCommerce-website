@@ -1,7 +1,7 @@
 
 <html lang="en">
 <head>
-    <meta charset="utf8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
     <style>
@@ -10,25 +10,43 @@
             margin: 0;
             padding: 0;
         }
-        .header {
-            
+        .header,
+ 	.footer  {
+	    background-color: ;
+            padding: 5px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px;
+
         }
-      .logo {
+	 /* Header left */
+    .auth-left-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+	
+   	.home img {
+            width:70px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+
+        .logo {
             display: flex;
-            align-items: center;
+            align-items: left;
         }
         .logo img {
-            width: 150px;
-	    height: 50px
+            width:55px;
+            height: 55px;
             margin-right: 10px;
+           
         }
         .nav {
             display: flex;
-            align-items: center;
+            align-items: center;    
         }
         .dropdown {
             position: relative
@@ -45,11 +63,12 @@
             border: none;
             cursor: pointer;
         }
-        .main-banner img {
+
+	.main-banner img {
             width: 100%;
-            height: 400px;
+            height: 500px;
             object-fit: cover;
-        }
+        } 
 
         .breadcrumb {
             margin: 10px 20px;
@@ -114,12 +133,7 @@
             display: inline-block;
             margin-top: 10px;
         }
-        .footer {
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
+       
 	.bold-text {
             font-weight: bold;
         }
@@ -131,35 +145,49 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+     <!-- Header -->
+
     <div class="header">
-        <div class="logo">
-            <img src="C:\Users\kamle\OneDrive\Desktop\M.sc\software development\logo.png" alt="Logo">
+ <!--left-->
+
+       <section class="auth-left-section">
+      <div class="home">
+        
+            <img src="https://static.vecteezy.com/system/resources/previews/022/013/913/large_2x/home-icon-illustration-image-vector.jpg" alt="home">
             <span></span>
         </div>
+<div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2000/2000047.png" alt="Logo" />
+      </div>
+    </section>
+
+<!--right-->
+    <section class="auth-right-section">
+
         <div class="nav">
             <div class="dropdown">
-            <select>
-                <option>Sports</option>
-                <option>Running</option>
-                <option>Cycling</option>
-                <option>Three</option>
-            </select>
-</div>
+                <select>
+                    <option>Sports</option>
+                    <option>Running</option>
+                    <option>Cycling</option>
+                    <option>Basketball</option>
+                </select>
+            </div>
+            <div class="auth-buttons">
+                <button>Sign In</button>
+                <button>Sign Up</button>
+            </div>
+        </div>
+      </section>
+  </div>
 
-<div class="auth-buttons">
-            <button>Sign In</button>
-            <button>Sign Up</button>
-        
+<!-- Banner -->
+
+    <div class="main-banner">
+        <img src="https://png.pngtree.com/thumb_back/fw800/background/20230901/pngtree-a-group-of-sports-equipment-on-a-surface-image_13169788.jpg" alt="Main Banner">
     </div>
-</div>
-</div>
 
-
-    <!-- Main Banner -->
-    <div class="main-banner"> 
-     <img src="C:\Users\kamle\OneDrive\Desktop\M.sc\software development\banner.jpg" alt="Main Banner">
-    </div>
 
 
     <!-- Breadcrumb -->
@@ -275,9 +303,14 @@
 </div>
 
     </div>
-<div class="footer">
-        © 2024 contributors – team 3 | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+<!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 contributors - team 3</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
     </div>
+  </footer>
+
 
 </body>
 </html>
